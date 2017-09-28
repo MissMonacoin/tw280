@@ -1,42 +1,58 @@
-var xhr = new XMLHttpRequest()
-xhr.open("post","https://twitter.com/i/tweet/create",false)
-xhr.setRequestHeader("X-Twitter-Active-User", "yes")
-xhr.setRequestHeader("X-Requested-With","XMLHttpRequest")
-xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8")
-var initData=JSON.stringify(document.getElementById("init-data").value)
-var twiBox=document.querySelector(".tweet-box .rich-editor")
-function tweet280(str){
-  var j={
-    "authenticity_token": initData.formAuthenticityToken,
-    "is_permalink_page": "false",
-    place_id: "",
-    status: str,
-    weighted_character_count:"true",
-    tagged_users: ""}
+(function(){
+  var xhr = new XMLHttpRequest()
+  xhr.open("post","https://api.twitter.com/1.1/statuses/update.json",false)
 
-  var qst=""
+  xhr.withCredentials=true;
 
-  for (var i in j){
-	  qst+=i+"="+j[i]+"&"
-  }
-  xhr.onreadystatechange = function() {
-    switch ( xhr.readyState ) {
-        case 4: // データ受信完了.
-        if( xhr.status == 200 || xhr.status == 304 ) {
-          alert("Tweeted!Count:"+str.length)
-          twiBox.innerText=""
-            } else {
-              alert("(_　_|||)")
-            }
-            break;
+  var cookies ={}
+  document.cookie.split("; ").forEach(function(v){
+
+    var kv=v.split("=")
+    cookies[kv[0]]=kv[1]
+  })
+
+  var sessionId=cookies.ct0;
+
+  xhr.setRequestHeader("X-Twitter-Active-User", "yes")
+  //xhr.setRequestHeader("X-Requested-With","XMLHttpRequest")//because of xdomain
+  xhr.setRequestHeader("x-csrf-token",sessionId)
+  xhr.setRequestHeader("x-twitter-auth-type","OAuth2Session")
+  xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+  xhr.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA")
+
+  function tweet280(str){
+    var j={
+      enable_dm_commands:true,
+      fail_dm_commands:true,
+      status: encodeURIComponent(str),
+      weighted_character_count:"true",
+      tweet_mode:"extended"
     }
-};
-  xhr.send(qst)
-}
 
-if(twiBox.innerText&&twiBox.innerText!=""&&twiBox.innerText!="\n"&&twiBox.innerText.substr(0,5) !== twiBox.dataset.placeholderDefault.substr(0,5)&& window.confirm("Ok to tweet\nOKでツイートします。\n\n@MissMonacoinより")){
-  tweet280(document.querySelector(".tweet-box .rich-editor").innerText)
-}else{
-  window.alert("Please type tweet first.Then run me\nまずツイートを入力してください.そのあとこのスクリプトを実行して下さい\n\n@MissMonacoinより")
-}
+    var qst=""
+
+    for (var i in j){
+	    qst+=i+"="+j[i]+"&"
+    }
+    xhr.onreadystatechange = function() {
+      switch ( xhr.readyState ) {
+        case 4: // データ受信完了.
+          if( xhr.status == 200 || xhr.status == 304 ) {
+            alert("Tweeted!Count:"+str.length)
+            
+          } else {
+            alert("(_　_|||)Sorry.")
+          }
+          break;
+      }
+    };
+    xhr.send(qst)
+  }
+  var tweet;
+  if(!!(tweet=window.prompt("What happened? 今どうしてる？"))&& window.confirm("Ok to tweet\nOKでツイートします。\n\n@MissMonacoinより")){
+    tweet280(tweet)
+  }else{
+    window.alert("Please type tweet first.Then run me\nまずツイートを入力してください.そのあとこのスクリプトを実行して下さい\n\n@MissMonacoinより")
+  }
   
+})()
