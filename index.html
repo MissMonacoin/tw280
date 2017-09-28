@@ -16,6 +16,7 @@
 
     <h3>Step 1:ここにツイートを打ち込む</h3>
     <textarea cols="30" id="tweet" name="" rows="10" placeholder="いまどうしてる？"></textarea><br/>
+    <input id="reply" name="" type="text" value="" placeholder="返信する場合、ツイートURLを打ち込んでください"/>
     <h3>Step 2:下記コードをコピーする</h3>
     <textarea cols="30" id="code" name="" rows="10"></textarea><br>
     <h3>Step 3:Twitter Webにログイン</h3>
@@ -33,7 +34,7 @@
     </footer>
     <script>
       var tweet=$("#tweet").on("input",function(){
-        $("#code").val('javascript:!function(e){var t=new XMLHttpRequest;t.open("post","https://api.twitter.com/1.1/statuses/update.json",!1),t.withCredentials=!0;var s={};document.cookie.split("; ").forEach(function(e){var t=e.split("=");s[t[0]]=t[1]});var a=s.ct0;t.setRequestHeader("X-Twitter-Active-User","yes"),t.setRequestHeader("x-csrf-token",a),t.setRequestHeader("x-twitter-auth-type","OAuth2Session"),t.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),t.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA");var r={enable_dm_commands:!0,fail_dm_commands:!0,status:e,weighted_character_count:"true",tweet_mode:"extended"},A="";for(var n in r)A+=n+"="+r[n]+"&";t.onreadystatechange=function(){switch(t.readyState){case 4:200==t.status||304==t.status?alert("Tweeted!Count:"+e.length):alert("(_　_|||)Sorry.")}},t.send(A)}("'+encodeURIComponent(tweet.val())+'");')
+        $("#code").val('javascript:!function(e,t){var s=new XMLHttpRequest;s.open("post","https://api.twitter.com/1.1/statuses/update.json",!1),s.withCredentials=!0;var a={};document.cookie.split("; ").forEach(function(e){var t=e.split("=");a[t[0]]=t[1]});var r=a.ct0;s.setRequestHeader("X-Twitter-Active-User","yes"),s.setRequestHeader("x-csrf-token",r),s.setRequestHeader("x-twitter-auth-type","OAuth2Session"),s.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),s.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA");var n={enable_dm_commands:!0,fail_dm_commands:!0,status:e,weighted_character_count:"true",tweet_mode:"extended",in_reply_to_status_id:t},A="";for(var o in n)A+=o+"="+n[o]+"&";s.onreadystatechange=function(){switch(s.readyState){case 4:200==s.status||304==s.status?alert("Tweeted!Count:"+e.length):alert("(_　_|||)Sorry.")}},s.send(A)}("'+encodeURIComponent(tweet.val())+'",'+/[0-9]*$/g.exec($("#reply").val())+');')
       })
     </script>
   </body>

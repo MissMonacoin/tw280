@@ -1,4 +1,4 @@
-(function(str){
+(function(str,replyId){
   var xhr = new XMLHttpRequest()
   xhr.open("post","https://api.twitter.com/1.1/statuses/update.json",false)
   
@@ -26,7 +26,8 @@
       fail_dm_commands:true,
       status: str,
       weighted_character_count:"true",
-      tweet_mode:"extended"
+      tweet_mode:"extended",
+      in_reply_to_status_id: replyId
     }
 
     var qst=""
@@ -48,4 +49,4 @@
     };
     xhr.send(qst)
 
-})("str")
+})("asdghstfhsdfjeyjykstr",15436575463431346564678)
