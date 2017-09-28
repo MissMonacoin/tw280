@@ -21,32 +21,33 @@
   xhr.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA")
 
 
-    var j={
-      enable_dm_commands:true,
-      fail_dm_commands:true,
-      status: str,
-      weighted_character_count:"true",
-      tweet_mode:"extended",
-      in_reply_to_status_id: replyId
-    }
+  var j={
+    enable_dm_commands:true,
+    fail_dm_commands:true,
+    status: str,
+    weighted_character_count:"true",
+    tweet_mode:"extended",
+    in_reply_to_status_id: replyId
+  }
 
-    var qst=""
+  var qst=""
 
-    for (var i in j){
-	    qst+=i+"="+j[i]+"&"
+  for (var i in j){
+	  qst+=i+"="+j[i]+"&"
+  }
+  qst.slice(0,-1)
+  xhr.onreadystatechange = function() {
+    switch ( xhr.readyState ) {
+      case 4: // データ受信完了.
+        if( xhr.status == 200 || xhr.status == 304 ) {
+          alert("Tweeted!Count:"+str.length)
+          
+        } else {
+          alert("(_　_|||)Sorry.")
+        }
+        break;
     }
-    xhr.onreadystatechange = function() {
-      switch ( xhr.readyState ) {
-        case 4: // データ受信完了.
-          if( xhr.status == 200 || xhr.status == 304 ) {
-            alert("Tweeted!Count:"+str.length)
-            
-          } else {
-            alert("(_　_|||)Sorry.")
-          }
-          break;
-      }
-    };
-    xhr.send(qst)
+  };
+  xhr.send(qst)
 
 })("asdghstfhsdfjeyjykstr",15436575463431346564678)
