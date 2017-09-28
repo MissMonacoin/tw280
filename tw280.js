@@ -1,7 +1,7 @@
-(function(){
+(function(str){
   var xhr = new XMLHttpRequest()
   xhr.open("post","https://api.twitter.com/1.1/statuses/update.json",false)
-
+  
   xhr.withCredentials=true;
 
   var cookies ={}
@@ -20,11 +20,11 @@
   xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
   xhr.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA")
 
-  function tweet280(str){
+
     var j={
       enable_dm_commands:true,
       fail_dm_commands:true,
-      status: encodeURIComponent(str),
+      status: str,
       weighted_character_count:"true",
       tweet_mode:"extended"
     }
@@ -47,12 +47,5 @@
       }
     };
     xhr.send(qst)
-  }
-  var tweet;
-  if(!!(tweet=window.prompt("What happened? 今どうしてる？"))&& window.confirm("Ok to tweet\nOKでツイートします。\n\n@MissMonacoinより")){
-    tweet280(tweet)
-  }else{
-    window.alert("Please type tweet first.Then run me\nまずツイートを入力してください.そのあとこのスクリプトを実行して下さい\n\n@MissMonacoinより")
-  }
-  
-})()
+
+})("str")

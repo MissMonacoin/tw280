@@ -3,42 +3,39 @@
   <head>
     <meta charset="UTF-8"/>
     <title>Twitter 140文字超えた</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+
   </head>
   <body>
-    <p>
-ツイッターの文字制限が裏で緩和されたと聞いたので
-さらにそれを無効化されたがAPIを直接叩けば行けたので
-    </p>
-    <h2>つかいかた</h2>
-    <p>
-    下記ブックマークレットをお気に入り登録する。
-    <br/><br/>
-    <a href="https://twitter.com">Twitterのサイトにアクセス</a><br/>
-    そのままではツイートできないので,下記文字列をアドレスバーに貼り付けこれを起動
-    プロンプトに投稿
-    OKを押す
-    ページを再読み込みすれば投稿完了です！
-    </p>
-    <h2>ブックマークレット</h2>
-    <a href='javascript:!function(){var e=new XMLHttpRequest;e.open("post","https://api.twitter.com/1.1/statuses/update.json",!1),e.withCredentials=!0;var t={};document.cookie.split("; ").forEach(function(e){var n=e.split("=");t[n[0]]=n[1]});var n=t.ct0;e.setRequestHeader("X-Twitter-Active-User","yes"),e.setRequestHeader("x-csrf-token",n),e.setRequestHeader("x-twitter-auth-type","OAuth2Session"),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA");var a;(a=window.prompt("What happened? 今どうしてる？"))&&window.confirm("Ok to tweet\nOKでツイートします。\n\n@MissMonacoinより")?function(t){var n={enable_dm_commands:!0,fail_dm_commands:!0,status:encodeURIComponent(t),weighted_character_count:"true",tweet_mode:"extended"},a="";for(var s in n)a+=s+"="+n[s]+"&";e.onreadystatechange=function(){switch(e.readyState){case 4:200==e.status||304==e.status?alert("Tweeted!Count:"+t.length):alert("(_　_|||)Sorry.")}},e.send(a)}(a):window.alert("Please type tweet first.Then run me\nまずツイートを入力してください.そのあとこのスクリプトを実行して下さい\n\n@MissMonacoinより")}();'>
-140超えツイート
-    </a><br/>
-    <textarea cols="30" id="" name="" rows="10">javascript:!function(){var e=new XMLHttpRequest;e.open("post","https://api.twitter.com/1.1/statuses/update.json",!1),e.withCredentials=!0;var t={};document.cookie.split("; ").forEach(function(e){var n=e.split("=");t[n[0]]=n[1]});var n=t.ct0;e.setRequestHeader("X-Twitter-Active-User","yes"),e.setRequestHeader("x-csrf-token",n),e.setRequestHeader("x-twitter-auth-type","OAuth2Session"),e.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),e.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA");var a;(a=window.prompt("What happened? 今どうしてる？"))&&window.confirm("Ok to tweet\nOKでツイートします。\n\n@MissMonacoinより")?function(t){var n={enable_dm_commands:!0,fail_dm_commands:!0,status:encodeURIComponent(t),weighted_character_count:"true",tweet_mode:"extended"},a="";for(var s in n)a+=s+"="+n[s]+"&";e.onreadystatechange=function(){switch(e.readyState){case 4:200==e.status||304==e.status?alert("Tweeted!Count:"+t.length):alert("(_　_|||)Sorry.")}},e.send(a)}(a):window.alert("Please type tweet first.Then run me\nまずツイートを入力してください.そのあとこのスクリプトを実行して下さい\n\n@MissMonacoinより")}();
-    </textarea>
-    アドレスバーに貼り付けするかブックマークレットにしてください。
-    ブックマークレット登録方法は各自でお調べください。ブラウザの種類は豊富ですのでね。
-    <br/>
-    <p>
-    License:MIT <br/>
-    (c) 2017 ミスモナコイン 薫
-    <br>
-    魔法：Twitter140文字投稿おめ@MissMonacoin
-    <br/>H2Ug88dNs88wP9Ft5V7oTiBHMGO6U5dGXAQ0yPp8xooTdpouXQOLwZXg4C7/txH4WdHcUsH8PskswEbJJ1xUahk=
-    </p>
-    <p>
-      見栄え良くするんで数時間〜数日お待ちください
-    </p>
-    <br/>
+    <h1>ツイートを140文字以上も打てる裏技があると聞いたので</h1>
+    <h2>それが対策されたけどモバイル向けにあるAPIでいけるみたい</h2>
+
+    <h3>Step 1:ここにツイートを打ち込む</h3>
+    <textarea cols="30" id="tweet" name="" rows="10" placeholder="いまどうしてる？"></textarea><br/>
+    <h3>Step 2:下記コードをコピーする</h3>
+    <textarea cols="30" id="code" name="" rows="10"></textarea><br>
+    <h3>Step 3:Twitter Webにログイン</h3>
+    <a href="https://twitter.com" class="btn btn-primary">Twitter web</a>
+    <h3>Step 4:アドレスバーに貼り付け</h3>
+
+
+    <footer>
+      Copyright (c) 2017 <a href="https://twitter.com/MissMonacoin">@MissMonacoin</a>
+      <br>
+      License:MIT
+      <br/>
+      また対策される可能性は極めて高いので、ご利用は自己責任でお願いします。<br/>
+      <a href="https://github.com/MissMonacoin/tw280">https://github.com/MissMonacoin/tw280</a>
+    </footer>
+    <script>
+      var tweet=$("#tweet").on("input",function(){
+        $("#code").val('javascript:!function(e){var t=new XMLHttpRequest;t.open("post","https://api.twitter.com/1.1/statuses/update.json",!1),t.withCredentials=!0;var s={};document.cookie.split("; ").forEach(function(e){var t=e.split("=");s[t[0]]=t[1]});var a=s.ct0;t.setRequestHeader("X-Twitter-Active-User","yes"),t.setRequestHeader("x-csrf-token",a),t.setRequestHeader("x-twitter-auth-type","OAuth2Session"),t.setRequestHeader("Content-Type","application/x-www-form-urlencoded"),t.setRequestHeader("Authorization","Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA");var r={enable_dm_commands:!0,fail_dm_commands:!0,status:e,weighted_character_count:"true",tweet_mode:"extended"},A="";for(var n in r)A+=n+"="+r[n]+"&";t.onreadystatechange=function(){switch(t.readyState){case 4:200==t.status||304==t.status?alert("Tweeted!Count:"+e.length):alert("(_　_|||)Sorry.")}},t.send(A)}("'+encodeURIComponent(tweet.val())+'");')
+      })
+    </script>
   </body>
 </html>
 
